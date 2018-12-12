@@ -1,0 +1,20 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{ message }}
+</div>
+
+<div id="app2">
+    <span v-bind:title="message">
+        Hover
+    </span>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>
