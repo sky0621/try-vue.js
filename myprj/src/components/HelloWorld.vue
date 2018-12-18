@@ -1,19 +1,15 @@
 <template>
-  <div v-bind:class="classObject"></div>
+  <p>{{ msg }}</p>
 </template>
 
 <script>
 export default {
-  data: {
-    isActive: true,
-    error: null
+  data: function() {
+    msg: 'Hello'
   },
   computed: {
-    classObject: function () {
-      return {
-        active: this.isActive && !this.error,
-        'text-danger': this.error && this.error.type === 'fatal'
-      }
+    addWorld: function () {
+      return this.msg + ', World!'
     }
   }
 }
