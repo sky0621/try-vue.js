@@ -1,4 +1,5 @@
-<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v="http://www.w3.org/1999/xhtml">
 <head>
     <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -7,6 +8,56 @@
     <div id="app">
         {{ msg }}
     </div>
-    <script src="index.js"></script>
+
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover
+        </span>
+    </div>
+
+    <div id="app-3">
+        <span v-if="seen">Now you see me</span>
+    </div>
+
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello!'
+            }
+        });
+
+        new Vue({
+            el: '#app-2',
+            data: {
+                message: 'You loaded this page on ' + new Date().toLocaleString()
+            }
+        })
+
+        new Vue({
+            el: '#app-3',
+            data: {
+                seen: 1
+            }
+        })
+
+        new Vue({
+            el: '#app-4',
+            data: {
+                todos: [
+                    { text: 'Golang' },
+                    { text: 'Java' },
+                    { text: 'Python'}
+                ]
+            }
+        })
+    </script>
 </body>
 </html>
