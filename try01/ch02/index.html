@@ -10,6 +10,11 @@
         <button v-on:click="reverseMessage">Reverse</button>
     </div>
 
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+
     <script>
         new Vue({
             el: '#app-5',
@@ -20,6 +25,13 @@
                 reverseMessage: function () {
                     this.message = this.message.split('').reverse().join('')
                 }
+            }
+        })
+
+        new Vue({
+            el: '#app-6',
+            data: {
+                message: 'init'
             }
         })
     </script>

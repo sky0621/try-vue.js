@@ -1,0 +1,50 @@
+<head>
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-7">
+        <ol>
+            <todo-item></todo-item>
+        </ol>
+    </div>
+
+    <div id="app-8">
+        <ol>
+            <todo-items
+                v-for="item in langList"
+                v-vind="todo"
+                v-key="item.id">
+
+            </todo-items>
+        </ol>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            template: '<li>This is a todo</li>'
+        });
+
+        new Vue({
+            el: '#app-7'
+        });
+
+        Vue.component('todo-items', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        });
+
+        new Vue({
+            el: '#app-8',
+            data: {
+                langList: [
+                    { id:0, text:'Golang' },
+                    { id:1, text: 'Java' },
+                    { id:2, text: 'Python' },
+                    { id:3, text: 'PHP' }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
