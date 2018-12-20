@@ -9,17 +9,6 @@
         </ol>
     </div>
 
-    <div id="app-8">
-        <ol>
-            <todo-items
-                v-for="item in langList"
-                v-vind="todo"
-                v-key="item.id">
-
-            </todo-items>
-        </ol>
-    </div>
-
     <script>
         Vue.component('todo-item', {
             template: '<li>This is a todo</li>'

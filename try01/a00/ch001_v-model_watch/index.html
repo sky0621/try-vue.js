@@ -1,0 +1,24 @@
+<head>
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-1">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+
+    <script>
+        const v01 = new Vue({
+            el: '#app-1',
+            data: {
+                message: 'Hello'
+            }
+        });
+
+        v01.$watch('message', function (newVal, oldVal) {
+            console.log("old:" + oldVal + " -> newVal:" + newVal);
+        })
+    </script>
+</body>
+</html>
