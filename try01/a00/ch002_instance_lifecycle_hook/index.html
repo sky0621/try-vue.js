@@ -1,0 +1,69 @@
+<head xmlns:v-model="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-1">
+        <p>{{ msg }}</p>
+        <input v-model="msg">
+        <button v-on:click="destroy">DESTROY</button>
+    </div>
+
+    <script>
+        vm = new Vue({
+            el: '#app-1',
+            data: {
+                msg: 'abc',
+                num: 0
+            },
+            beforeCreate: function () {
+                console.log('new Vue()');
+                console.log('Init: Events & Lifecycle');
+                this.num += 1;
+                console.log('['+this.num+']beforeCreate:'+this.msg);
+            },
+            created: function () {
+                console.log('init: injections & reactivity');
+                this.num += 1;
+                console.log('['+this.num+']created:'+this.msg);
+            },
+            beforeMount: function () {
+                console.log('Compile: (template into render function) or (el\'s outerHTML as template)');
+                this.num += 1;
+                console.log('['+this.num+']beforeMount:'+this.msg);
+            },
+            mounted: function () {
+                console.log('Create: vm.$el and replace "el" with it');
+                this.num += 1;
+                console.log('['+this.num+']mounted:'+this.msg);
+            },
+            beforeUpdate: function () {
+                console.log('when data changes');
+                this.num += 1;
+                console.log('['+this.num+']beforeUpdate:'+this.msg);
+            },
+            updated: function () {
+                console.log('Virtual DOM re-render and patch');
+                this.num += 1;
+                console.log('['+this.num+']updated:'+this.msg);
+            },
+            beforeDestroy: function () {
+                console.log('when vm.$destroy() is called');
+                this.num += 1;
+                console.log('['+this.num+']beforeDestroy:'+this.msg);
+            },
+            destroyed: function () {
+                console.log('Teardown: watchers, child components and event listeners');
+                this.num += 1;
+                console.log('['+this.num+']destroyed:'+this.msg);
+            },
+            methods: {
+                destroy: function () {
+                    vm.$destroy();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
