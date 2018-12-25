@@ -9,6 +9,15 @@
         </ol>
     </div>
 
+    <div id="app-8">
+        <ol>
+            <todo-items
+                v-for="lang in langList"
+                v-bind:todo="lang"
+                v-bind:key="lang.id"></todo-items>
+        </ol>
+    </div>
+
     <script>
         Vue.component('todo-item', {
             template: '<li>This is a todo</li>'
