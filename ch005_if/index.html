@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/conditional.html</h1>
+
+    <h2></h2>
+    <div id="app-1">
+        <p v-if="isSeen">Seen</p>
+    </div>
+
+    <div id="app-2">
+        <p>
+            <ol>
+                <template v-if="isSeen">
+                    <li>No.1</li>
+                    <li>No.2</li>
+                    <li>No.3</li>
+                </template>
+                    <li>No.4</li>
+            </ol>
+        </p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app-1',
+            data: {
+                isSeen: true,
+            },
+        });
+
+        new Vue({
+            el: '#app-2',
+            data: {
+                isSeen: true,
+            },
+        });
+    </script>
+</body>
+</html>

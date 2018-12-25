@@ -1,20 +1,40 @@
+<html>
 <head>
+    <meta charset="utf-8">
+
     <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+    <h1>https://jp.vuejs.org/v2/guide/computed.html</h1>
+
+    <h2></h2>
     <div id="app-1">
         <p>{{ msg }}</p>
         <p>{{ msg.split('').reverse().join('') }}</p>
         <p>{{ msg.split('').reverse().join('') }}</p>
     </div>
 
+    <h2>算出プロパティ</h2>
     <div id="app-2">
         <p>{{ msg }}</p>
         <p>{{ reverseMsg }}</p>
         <p>{{ reverseMsg }}</p>
     </div>
 
+    <h2>監視プロパティ</h2>
+    <div id="app-3">
+        {{ fullName }}
+    </div>
+
+    <p></p>
+
+    <h2>算出 Setter 関数</h2>
+    <div id="app-4">
+        <input v-model="fullName2">
+        <p>{{ firstName2 }}</p>
+        <p>{{ lastName2 }}</p>
+    </div>
     <script>
         new Vue({
             el: '#app-1',
@@ -34,6 +54,44 @@
                    return this.msg.split('').reverse().join('');
                }
            },
+        });
+
+        new Vue({
+            el: '#app-3',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Baa',
+                fullName: 'Foo Baa',
+            },
+            watch: {
+                firstName: function (val) {
+                    this.fullName = val + ' ' + this.lastName;
+                },
+                lastName: function (val) {
+                    this.fullName = this.firstName + ' ' + val;
+                },
+            },
+        });
+
+        new Vue({
+            el: '#app-4',
+            data: {
+                firstName2: 'Foo',
+                lastName2: 'Baa',
+                // fullName2: 'Foo Baa',
+            },
+            computed: {
+                fullName2: {
+                    get: function () {
+                        return this.firstName2 + ' ' + this.lastName2;
+                    },
+                    set: function (val) {
+                        const names = val.split(' ');
+                        this.firstName2 = names[0];
+                        this.lastName2 = names[names.length - 1];
+                    },
+                },
+            },
         });
     </script>
 </body>

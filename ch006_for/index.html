@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-1">
+        <ul>
+            <li v-for="item in items" >{{ item }}</li>
+        </ul>
+    </div>
+
+    <div id="app-2">
+        <ul>
+            <li v-for="(item, index) in items" >[{{ index }}]{{ item.name }}</li>
+        </ul>
+    </div>
+
+    <div id="app-3">
+        <ul>
+            <li v-for="(value, key, index) in object">[{{ index }}]-{{ key }} - {{ value }}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app-1',
+            data: {
+                items: ['A', 'B', 'O', 'AB'],
+            },
+        });
+
+        new Vue({
+            el: '#app-2',
+            data: {
+                items: [
+                    {id: 1, name: 'A'},
+                    {id: 2, name: 'B'},
+                    {id: 3, name: 'O'},
+                    {id: 4, name: 'AB'}
+                ],
+            },
+        });
+
+        new Vue({
+            el: '#app-3',
+            data: {
+                object: {
+                    first: 'John',
+                    last: 'Doh',
+                    age: 20,
+                },
+            },
+        });
+    </script>
+</body>
+</html>
