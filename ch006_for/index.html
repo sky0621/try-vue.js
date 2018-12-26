@@ -14,14 +14,28 @@
 
     <div id="app-2">
         <ul>
-            <li v-for="(item, index) in items" >[{{ index }}]{{ item.name }}</li>
+            <li v-for="(item, index) in items" :key="item.id">INDEX[{{ index }}] {{ item.name }}</li>
         </ul>
     </div>
 
     <div id="app-3">
         <ul>
+            <li v-for="item in items" :key="item.id">KEY[{{ item.id }}] {{ item.name }}</li>
+        </ul>
+    </div>
+
+    <div id="app-4">
+        <ul>
             <li v-for="(value, key, index) in object">[{{ index }}]-{{ key }} - {{ value }}</li>
         </ul>
+    </div>
+
+    <div id="app-5">
+        <ul>
+            <li v-for="item in items" >{{ item }}</li>
+        </ul>
+        <p>ITEM: <input v-model="item"></p>
+        <p><button @click="addItem">ADD_ITEM</button></p>
     </div>
 
     <script>
@@ -47,12 +61,37 @@
         new Vue({
             el: '#app-3',
             data: {
+                items: [
+                    {id: 1, name: 'A'},
+                    {id: 2, name: 'B'},
+                    {id: 3, name: 'O'},
+                    {id: 4, name: 'AB'}
+                ],
+            },
+        });
+
+        new Vue({
+            el: '#app-4',
+            data: {
                 object: {
                     first: 'John',
                     last: 'Doh',
                     age: 20,
                 },
             },
+        });
+
+        new Vue({
+            el: '#app-5',
+            data: {
+                items: ['Golang', 'Java', 'Python'],
+                item: '',
+            },
+            methods: {
+                addItem: function () {
+                    this.items.push(this.item);
+                },
+            }
         });
     </script>
 </body>
