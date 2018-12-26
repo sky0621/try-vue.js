@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/list.html#%E9%85%8D%E5%88%97%E3%81%AE%E5%A4%89%E5%8C%96%E3%82%92%E6%A4%9C%E5%87%BA</h1>
+
+    <div id="app-1">
+        <p>langs: {{ langs }}</p>
+        <p>filteredC: {{ filteredC }}</p>
+        <p><v-btn v-on:click="filterC">FILTERC</v-btn></p>
+        <p><v-btn v-on:click="sort">SORT</v-btn></p>
+        <p><v-btn v-on:click="reverse">REVERSE</v-btn> </p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app-1',
+            data: {
+                langs: ['Java', 'Ruby', 'Scala', 'C', 'Golang', 'PHP', 'C++', 'Python', 'Haskell', 'JavaScript', 'C#', 'Perl', 'Kotlin', 'Elixir', 'Rust'],
+                filteredC: [],
+            },
+            methods: {
+                filterC: function () {
+                    this.filteredC = this.langs.filter(function (lang) {
+                        return lang.match(/C/);
+                    });
+                },
+                sort: function () {
+                    this.langs = this.langs.sort();
+                },
+                reverse: function () {
+                    this.langs = this.langs.reverse();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

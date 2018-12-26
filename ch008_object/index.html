@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/list.html#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%A4%89%E6%9B%B4%E6%A4%9C%E5%87%BA%E3%81%AE%E6%B3%A8%E6%84%8F</h1>
+
+    <div id="app-1">
+        <p>{{ parent }}</p>
+        <p><v-btn v-on:click="addAgeProp">ADD_AGE_PROP</v-btn> </p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app-1',
+            data: {
+                parent: {
+                    child: 'child',
+                },
+            },
+            methods: {
+                addAgeProp: function () {
+                    this.parent = Object.assign({}, this.parent, {
+                        'age': 30,
+                        'country': 'Japan',
+                    });
+                },
+            },
+        });
+    </script>
+</body>
+</html>
