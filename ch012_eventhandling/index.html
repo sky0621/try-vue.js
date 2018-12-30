@@ -1,4 +1,4 @@
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
 
@@ -6,11 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-    <h1></h1>
+    <h1>https://jp.vuejs.org/v2/guide/events.html</h1>
 
-    <h2></h2>
+    <h2>メソッドイベントハンドラ</h2>
     <div id="app-1">
-
+        <button v-on:click="greet">Greet</button>
     </div>
     <hr>
 
@@ -23,7 +23,12 @@
             },
 
             methods: {
-
+                greet: function (event) {
+                    console.log('greet');
+                    if (event) {
+                        alert(event.target.tagName);
+                    }
+                }
             },
         });
     </script>
