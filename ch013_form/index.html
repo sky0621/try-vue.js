@@ -28,6 +28,31 @@
         <input type="checkbox" v-model="langs" id="java" value="java"><label for="java">Java</label>
         <input type="checkbox" v-model="langs" id="python" value="python"><label for="python">Python</label>
         <p>{{ langs }}</p>
+
+        <h3># ラジオボタン</h3>
+        <input type="radio" v-model="picked" id="one" value="one"><label for="one">One</label>
+        <input type="radio" v-model="picked" id="two" value="two"><label for="two">Two</label>
+        <br><span>Picked: {{ picked }}</span>
+
+        <h3># セレクト</h3>
+        <h4>単体の選択</h4>
+        <select v-model="selected">
+            <option disabled value="">Please select one</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+
+        <h4>複数の選択</h4>
+        <select v-model="selects" multiple>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+        </select>
+        <span>Selected: {{ selects }}</span>
     </div>
     <hr>
 
@@ -40,6 +65,9 @@
                 msgTextArea: '',
                 checked: false,
                 langs: [],
+                picked: '',
+                selected: '',
+                selects: [],
             },
 
             methods: {
