@@ -16,7 +16,26 @@
     </div>
     <hr>
 
+    <h2>コンポーネントのプロパティ</h2>
+    <div id="app-2">
+        <blog-post title="First"></blog-post>
+        <blog-post title="Second"></blog-post>
+    </div>
+    <hr>
+
+    <h2>動的にプロパティを取得</h2>
+    <div id="app-3">
+        <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+        ></blog-post>
+    </div>
+    <hr>
+
     <script>
+        // Vue.componentを使うと、コンポーネントをグローバルに登録
+        // そうすると、ルートVueインスタンス（ new Vue() で作成されたインスタンス）で使えるようになる。
         Vue.component('button-counter', {
             data: function () {
                 return {
@@ -29,6 +48,30 @@
         new Vue({
             el: '#app-1',
         });
+
+        Vue.component('blog-post', {
+            props: ['title'],
+            template: '<h3>{{ title }}</h3>',
+        });
+
+        new Vue({
+            el: '#app-2',
+        });
+
+        new Vue({
+            el: '#app-3',
+            data: {
+                posts: [],
+            },
+            mounted: function () {
+                this.posts = [
+                    {id: 1, title: 'Title One'},
+                    {id: 2, title: 'Title Two'},
+                    {id: 3, title: 'Title Three'},
+                ];
+            },
+        });
+
     </script>
 </body>
 </html>
