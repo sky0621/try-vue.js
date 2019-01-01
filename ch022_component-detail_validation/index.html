@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/components-props.html#%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AE%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3</h1>
+
+    <h2>プロパティのバリデーション</h2>
+    <div id="app-1">
+        <my-component
+            v-bind:prop-number="propNumber"
+            v-bind:prop-string-required="propStringRequired"
+        ></my-component>
+    </div>
+    <hr>
+
+    <script>
+        Vue.component('my-component', {
+            props: {
+                propNumber: Number,
+                propNumOrString: [Number, String],
+                propStringRequired: {
+                    type: String,
+                    required: true,
+                },
+            },
+            template:
+                '<div>' +
+                    '<p>propNumber: {{ propNumber }}</p>' +
+                    '<p>propStringRequired: {{ propStringRequired }}</p>' +
+                '</div>',
+        });
+
+        new Vue({
+            el: '#app-1',
+
+            data: {
+                propNumber: 12345,
+                propStringRequired: 'AAA',
+            },
+        });
+    </script>
+</body>
+</html>

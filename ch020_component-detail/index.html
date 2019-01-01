@@ -8,22 +8,34 @@
 <body>
     <h1>https://jp.vuejs.org/v2/guide/components-registration.html</h1>
 
-    <h2></h2>
+    <h2>コンポーネントの登録</h2>
     <div id="app-1">
-
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
     </div>
     <hr>
 
     <script>
+        const ComponentA = Vue.component('component-a', {
+            template: '<div>Comp-A</div>',
+        });
+
+        const ComponentB = Vue.component('component-b', {
+            template: '<div>Comp-B</div>',
+        });
+
+        const ComponentC = Vue.component('component-c', {
+            template: '<div>Comp-C</div>',
+        });
+
         new Vue({
             el: '#app-1',
 
-            data: {
-
-            },
-
-            methods: {
-
+            components: {
+                'comp-a': ComponentA,
+                'comp-b': ComponentB,
+                'comp-c': ComponentC,
             },
         });
     </script>
