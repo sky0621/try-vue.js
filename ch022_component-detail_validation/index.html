@@ -12,7 +12,11 @@
     <div id="app-1">
         <my-component
             v-bind:prop-number="propNumber"
+            v-bind:prop-num-or-string="propNumOrString"
             v-bind:prop-string-required="propStringRequired"
+            v-bind:prop-number-default="propNumberDefault"
+            v-bind:prop-object-default="propObjectDefault"
+            v-bind:prop-object-validation="propObjectValidation"
         ></my-component>
     </div>
     <hr>
@@ -26,11 +30,30 @@
                     type: String,
                     required: true,
                 },
+                propNumberDefault: {
+                    type: Number,
+                    default: 100,
+                },
+                propObjectDefault: {
+                    type: Object,
+                    default: function () {
+                        return {message: 'Hello'}
+                    },
+                },
+                propObjectValidation: {
+                    validator: function (value) {
+                        return ['A', 'B', 'O', 'AB'].indexOf(value) !== -1;
+                    },
+                },
             },
             template:
                 '<div>' +
                     '<p>propNumber: {{ propNumber }}</p>' +
+                    '<p>propNumOrString: {{ propNumOrString }}' +
                     '<p>propStringRequired: {{ propStringRequired }}</p>' +
+                    '<p>propNumberDefault: {{ propNumberDefault }}</p>' +
+                    '<p>propObjectDefault: {{ propObjectDefault }}</p>' +
+                    '<p>propObjectValidation: {{ propObjectValidation }}</p>' +
                 '</div>',
         });
 
@@ -39,7 +62,11 @@
 
             data: {
                 propNumber: 12345,
+                propNumOrString: 'xyz',
                 propStringRequired: 'AAA',
+                // propNumberDefault: 999,
+                // propObjectDefault: {other: 'Other?'},
+                propObjectValidation: 'AB',
             },
         });
     </script>
