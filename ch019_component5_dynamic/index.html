@@ -1,0 +1,79 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/components.html#%E5%8B%95%E7%9A%84%E3%81%AA%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88</h1>
+
+    <h2>動的なコンポーネント</h2>
+    <div id="app-1" class="demo">
+        <button
+            v-for="tab in tabs"
+            v-bind:key="tab"
+            v-bind:class="['tab-button', { active: currentTab === tab }]"
+            v-on:click="currentTab = tab"
+        >{{ tab }}</button>
+
+        <component
+            v-bind:is="currentTabComponent"
+            class="tab"
+        ></component>
+    </div>
+    <hr>
+
+    <script>
+        Vue.component('tab-home', {
+            template: '<div>Home component</div>',
+        });
+
+        Vue.component('tab-posts', {
+            template: '<div>Posts component</div>',
+        });
+
+        Vue.component('tab-archive', {
+            template: '<div>Archive component</div>',
+        });
+
+        new Vue({
+            el: '#app-1',
+
+            data: {
+                currentTab: 'Home',
+                tabs: ['Home', 'Posts', 'Archive'],
+            },
+
+            computed: {
+                currentTabComponent: function () {
+                    return 'tab-' + this.currentTab.toLowerCase();
+                }
+            },
+        });
+    </script>
+
+    <style>
+        .tab-button {
+            padding: 6px 10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background: #f0f0f0;
+            margin-bottom: -1px;
+            margin-right: -1px;
+        }
+        .tab-button:hover {
+            background: #e0e0e0;
+        }
+        .tab-button.active {
+            background: #e0e0e0;
+        }
+        .tab {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</body>
+</html>
