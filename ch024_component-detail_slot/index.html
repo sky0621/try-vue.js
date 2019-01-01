@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>https://jp.vuejs.org/v2/guide/components-slots.html</h1>
+
+    <h2>名前付きスロット</h2>
+    <div id="app-1">
+        <base-layout>
+            <template slot="header">
+                <h3>Here might be a page title</h3>
+            </template>
+
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+
+            <template slot="footer">
+                <p><i>Here's some contact info</i></p>
+            </template>
+        </base-layout>
+    </div>
+    <hr>
+
+    <h2>デフォルトのスロットコンテンツ</h2>
+    <div id="app-2">
+        <p><base-button></base-button></p>
+        <p><base-button>Button</base-button></p>
+    </div>
+
+    <script>
+        Vue.component('base-layout', {
+            template:
+                '<div class="container">' +
+                    '<header>' +
+                        '<slot name="header"></slot>' +
+                    '</header>' +
+                    '<main>' +
+                        '<slot></slot>' +
+                    '</main>' +
+                    '<footer >' +
+                        '<slot name="footer"></slot>' +
+                    '</footer >' +
+                '</div>',
+        });
+
+        new Vue({
+            el: '#app-1',
+        });
+
+        Vue.component('base-button', {
+            template:
+                '<div>' +
+                    '<button><slot>Submit</slot></button>' +
+                '</div>',
+        });
+
+        new Vue({
+            el: '#app-2',
+        });
+    </script>
+</body>
+</html>
