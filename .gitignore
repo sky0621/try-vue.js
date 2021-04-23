@@ -2,3 +2,5 @@ node_modules/
 myprj/build/
 ./**/node_modules/
 
+.idea/
+

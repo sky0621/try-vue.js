@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="utf-8">
+<body>
+<div id="app">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+<script lang="ts">
+    const userRowComponent = Vue.defineComponent({
+        methods: {
+            edit: function () {
+                this.user.editable = true;
+                this.$nextTick(() => {
+                    this.$refs.editNickname.focus();
+                });
+            },
+        },
+        computed: {
+            judge: function () {
+                return this.user.editable;
+            },
+        },
+        template: `
+            <tr>
+              <td>
+                <span v-if="!judge" @click="edit()">{{ user.nickname }}</span>
+                <input v-show="judge" v-model="user.nickname" @blur="user.editable = false" ref="editNickname">
+              </td>
+              <td>{{ user.email }}</td>
+            </tr>
+        `,
+        props: ["user"],
+    });
+
+    const app = Vue.createApp({
+        data: () => ({
+        }),
+    });
+    app.mount('#app');
+</script>
+</body>
+</html>
